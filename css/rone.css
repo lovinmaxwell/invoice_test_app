@@ -1,0 +1,63 @@
+input.form-control.client-address {
+  display: inline;
+  width: 49.5%;
+}
+
+input.form-control.client-name {
+  display: inline;
+  width: 50%;
+}
+
+#alert_information {
+  visibility: hidden;
+  background-color: #d14040;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 16px;
+  overflow-wrap: break-word;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform-origin: bottom;
+  position: fixed;
+  transform: translate(-50%, 0);
+  min-width: 200px;
+  max-width: 95%;
+  bottom: 30px;
+  left: 50%;
+}
+#alert_information.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.2s;
+  animation: fadein 0.2s;
+}
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+#ctn_export {
+  display: flex;
+}
+#ldr_export {
+  margin: 0 5px;
+  visibility: hidden;
+  border: 5px solid #ababab;
+  border-top: 5px solid #292929;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  display: inline-block;
+}
+#ldr_export.show {
+  visibility: visible;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
