@@ -177,13 +177,14 @@ $( document ).ready(function() {
 		var $td;
 		var _error = "";
 		var _exit = false;
+
 		$('tr.edit-table').each(function() {
 			var _num = $(this).index('.edit-table')+1;
 			
-			_pos_desc.push($(this).find("td.desc").text());
+			_pos_desc.push($(this).find(".desc").val());
 
-			$td = $(this).find("td.qty");
-			var _quan_value = parseInt($td.text());
+			$td = $(this).find('.qty').val();
+			var _quan_value = parseInt($td);
 			if (isNaN(_quan_value))
 			{
 				_error = '<b>Incorrect input!</b></br>Column: ›'+columnName($td)+'‹ / Row: '+_num+'</br>»'+$td.text()+'« is not a integer.';
@@ -192,8 +193,8 @@ $( document ).ready(function() {
 			}
 			_pos_quan.push(_quan_value);
 
-			$td = $(this).find("td.unit_price");
-			var _unit_value = parseFloat($td.text());
+			$td = $(this).find(".unit").val();
+			var _unit_value = parseFloat($td);
 			if (isNaN(_unit_value))
 			{
 				_error = '<b>Incorrect input!</b></br>Column: ›'+columnName($td)+'‹ / Row: '+_num+'</br>»'+$td.text()+'« is not a double.';
@@ -202,8 +203,8 @@ $( document ).ready(function() {
 			}
 			_unitprice.push(_unit_value);
 
-			$td = $(this).find("td.line_vat");
-			var _vat_value = parseFloat($td.text());
+			$td = $(this).find(".vat").val();
+			var _vat_value = parseFloat($td);
 			if (isNaN(_vat_value))
 			{
 				_error = '<b>Incorrect input!</b></br>Column: ›'+columnName($td)+'‹ / Row: '+_num+'</br>»'+$td.text()+'« is not a double.';
@@ -214,10 +215,11 @@ $( document ).ready(function() {
 
 			_pos_unit.push("€");
 		});
+
 		if (_exit)
 		{
-			$('html, body').animate({ scrollTop: $td.offset().top },50);
-			$td.effect("highlight", {}, 1000);
+			// $('html, body').animate({ scrollTop: $td.offset().top },50);
+			// $td.effect("highlight", {}, 1000);
 			showAlert(_error, '#d14040');
 			disableButton(false);
 			showLoader(false);
@@ -226,7 +228,7 @@ $( document ).ready(function() {
 		data['pos_description'] = _pos_desc;
 		data['pos_quantity'] = _pos_quan;
 		data['pos_unitprice'] = _unitprice;
-		data['line_vat'] = _vat;
+		data['vat'] = _vat;
 		data["pos_unit"] = _pos_unit;
 
 		data['name'] = $('#name').val();
