@@ -29,6 +29,7 @@ jQuery.fn.shift = [].shift;
 $BTN.click(function () {
   var $rows = $TABLE.find('tr:not(:hidden)');
   var headers = [];
+  // var headers = ["description","quantity","unit_price","vat","total"];
   var data = [];
   
   // Get the headers (add special header logic here)
