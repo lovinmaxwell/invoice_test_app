@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>HTML Table</h2>
+<input type="text" id="number">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Country</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Unit Price</th>
+    <th>VAT</th>
+
+    
+
+  </tr>
+  <tr>
+    <td id="name1"></td>
+    <td id="countryName1"></td>
+    <td id="productName1"></td>
+    <td id="QtyName1"></td>
+    <td id="Unitp1"></td>
+    <td id="VAT1"></td>
+  </tr>
+  
+</table>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+	
+function loadDoc(){
+
+	
+		var number = document.getElementById('number').value;
+		var login = { username: "admin", password: "admin" };
+        var posting = $.post("http://212.201.64.150/api/v1/Login/getToken", login, function() {}, "json");
+        posting.done(function(response) {
+			var data = {};
+			data['token'] = response.result.token;
+			data['number'] = number; //"719762231";
+			
+			var post2 = $.post("http://212.201.64.150/api/v1/Invoice/getInvoiceByNumber", data, function() {}, "json");
+			post2.fail(function() {
+            alert('Receiving token failed.');
+            
+            //var post3 = $.post("http://212.201.64.150/api/v1/Invoice/getInvoices", login, function() {}, "json");
+            //post3.fail(function() {
+			//	alert('Receiving token failed.');
+        });	
+		post2.done(function(response) {
+            console.log(response);
+           // console.log(response['result']);
+            var description1;
+           //response['result'][0]['positions'][0]['description'];
+            document.getElementById('name1').innerHTML = response['result'][0]['address']['name'];
+            document.getElementById('countryName1').innerHTML = response['result'][0]['address']['country'];
+            document.getElementById('productName1').innerHTML = response['result'][0]['positions'][0]['description'];
+            document.getElementById('QtyName1').innerHTML = response['result'][0]['positions'][0]['quantity'];
+            document.getElementById('Unitp1').innerHTML = response['result'][0]['positions'][0]['unitprice'];
+            document.getElementById('VAT1').innerHTML = response['result'][0]['positions'][0]['line_vat'];  
+            
+         //   document.getElementById('name2').innerHTML = response['result'][1]['address']['name'];
+           // document.getElementById('countryName2').innerHTML = response['result'][1]['address']['country'];
+           // document.getElementById('productName2').innerHTML = response['result'][1]['positions'][0]['description'];
+           // document.getElementById('QtyName2').innerHTML = response['result'][1]['positions'][0]['quantity'];
+          //  document.getElementById('Unitp2').innerHTML = response['result'][1]['positions'][0]['unitprice'];
+           // document.getElementById('VAT2').innerHTML = response['result'][1]['positions'][0]['line_vat'];  
+
+           // document.getElementById('name3').innerHTML = response['result'][2]['address']['name'];
+          //  document.getElementById('countryName3').innerHTML = response['result'][2]['address']['country'];
+           // document.getElementById('productName3').innerHTML = response['result'][2]['positions'][0]['description'];
+          //  document.getElementById('QtyName3').innerHTML = response['result'][2]['positions'][0]['quantity'];
+           // document.getElementById('Unitp3').innerHTML = response['result'][2]['positions'][0]['unitprice'];
+           // document.getElementById('VAT3').innerHTML = response['result'][2]['positions'][0]['line_vat'];  
+           
+                    
+        });	
+
+        });
+			
+			
+			
+			
+			}
+</script>
+</html>

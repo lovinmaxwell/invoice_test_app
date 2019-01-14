@@ -267,6 +267,7 @@ $( document ).ready(function() {
 		else
 			showAlert('New Invoice', '#003da0');
 		
+		$("#sum").html("0.00");
 		$('input').val("");
 		$('.edit-table').remove();
 		$('.table-add').trigger('click');  //$('#table').find('table').append($('#table').find('tr.hide').clone(true).removeClass('hide table-line').addClass("edit-table")); (Simulates Click)

@@ -8,6 +8,17 @@ input.form-control.client-name {
   width: 50%;
 }
 
+#alert_box {
+  transform-origin: bottom;
+  position: fixed;
+  transform: translate(-50%, 0);
+  min-width: 200px;
+  max-width: 95%;
+  bottom: 30px;
+  left: 50%;
+  animation: none;
+}
+
 #alert_information {
   visibility: hidden;
   background-color: #d14040;
@@ -17,18 +28,23 @@ input.form-control.client-name {
   padding: 16px;
   overflow-wrap: break-word;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transform-origin: bottom;
-  position: fixed;
-  transform: translate(-50%, 0);
-  min-width: 200px;
-  max-width: 95%;
-  bottom: 30px;
-  left: 50%;
 }
 #alert_information.show {
   visibility: visible;
-  -webkit-animation: fadein 0.2s;
-  animation: fadein 0.2s;
+  /*-webkit-animation: fadein 0.2s;
+  animation: shake1 1s;*/
+}
+@keyframes shake1 {
+  10%, 90% {transform: translate3d(-1px, 0, 0);}
+  20%, 80% {transform: translate3d(2px, 0, 0);}
+  30%, 50%, 70% {transform: translate3d(-4px, 0, 0);}
+  40%, 60% {transform: translate3d(4px, 0, 0);}
+}
+@keyframes shake2 {
+  10%, 90% {transform: translate3d(-1px, 0, 0);}
+  20%, 80% {transform: translate3d(2px, 0, 0);}
+  30%, 50%, 70% {transform: translate3d(-4px, 0, 0);}
+  40%, 60% {transform: translate3d(4px, 0, 0);}
 }
 @keyframes fadein {
   from {bottom: 0; opacity: 0;}
@@ -61,3 +77,12 @@ input.form-control.client-name {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.new-invoice {
+  color: #003da0;
+  cursor: pointer;
+  margin-left:10px;
+  margin-right:5px;
+}
+.new-invoice:hover {
+  color: #3779e5;
